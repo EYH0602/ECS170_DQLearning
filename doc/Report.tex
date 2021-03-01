@@ -1,0 +1,177 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm}
+\usepackage{amsmath,amssymb}
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage[normalem]{ulem}
+\usepackage{titling}
+\usepackage[shortlabels]{enumitem}
+\usepackage{multirow}
+\usepackage{dsfont}
+\usepackage{pdfpages}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage{listings}
+\usepackage{xparse}
+\usepackage{mathtools}
+\usepackage{qtree}
+\usepackage{wrapfig}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{color,soul}
+
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
+\SetCommentSty{mycommfont}
+
+%% Margins
+\usepackage[top=2.5cm, left=3cm, right=3cm, bottom=4.0cm]{geometry}
+%% Colour table cells
+%% allow code segment, from Overleaf
+%%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.4,0.4,0.4}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%%
+
+% inline code
+\NewDocumentCommand{\codeword}{v}{%
+\texttt{\footnotesize \textcolor{codegray}{#1}}%
+}
+
+
+%%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+%   backgroundcolor=\color{backcolour}, 
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=4
+}
+
+%%"mystyle" code listing set
+\lstset{style=mystyle}
+
+%% theorem styles
+%% with number
+\newtheorem{corollary}{\bf Corollary}[section]
+\newtheorem{definition}{\bf Definition}[section]
+\newtheorem{proposition}{\bf Proposition}[section]
+\newtheorem{Axiom}{\bf Axiom}
+\newtheorem{theorem}{\bf Theorem}[section]
+\newtheorem{lemma}{\bf Lemma}[section]
+\newtheorem{example}{\bf Example}[section]
+\newtheorem{remark}{\bf Remark}[section]
+\newtheorem{Algorithm}{\bf Algorithm}[section]
+\newtheorem{property}{\bf Property}[section]
+\newtheorem{note}{\bf Note}
+%% with out number
+\newtheorem*{corollary*}{\bf Corollary}
+\newtheorem*{definition*}{\bf Definition}
+\newtheorem*{proposition*}{\bf Proposition}
+\newtheorem*{Axiom*}{\bf Axiom}
+\newtheorem*{theorem*}{\bf Theorem}
+\newtheorem*{lemma*}{\bf Lemma}
+\newtheorem*{example*}{\bf Example}
+\newtheorem*{remark*}{\bf Remark}
+\newtheorem*{Algorithm*}{\bf Algorithm}
+\newtheorem*{note*}{\bf Note}
+\newcommand{\reff}[1]{Figure~\ref{#1}}
+\newcommand{\reftb}[1]{Table~\ref{#1}}
+
+\newcommand\round[1]{\left[#1\right]}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%% mathbb and mathcal often used letters
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\1}{\mathds{1}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Fp}{\F_{p}}
+
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+
+\renewcommand{\hl}[1]{\colorbox{yellow}{#1}}
+
+\newenvironment{solution}{\par\textit{Sol.}}{\hfill $\blacksquare$}
+\newcommand{\series}[1][n]{\sum_{#1=1}^{\infty}}
+\newcommand{\limil}{\lim\limits}
+\newcommand{\inflim}[1][n]{\limil_{#1\rightarrow\infty}}
+\newcommand{\sumil}{\sum\limits}
+\newcommand{\otherwise}{\text{otherwise}}
+
+\newcommand{\ua}{\uparrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\da}{\nwarrow}
+
+
+%% Get larger line spacing in table
+\newcommand{\tablespace}{\\[1.25mm]}
+\newcommand\Tstrut{\rule{0pt}{2.6ex}}         %% = `top' strut
+\newcommand\tstrut{\rule{0pt}{2.0ex}}         %% = `top' strut
+\newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}}   %% = `bottom' strut
+
+%% Swap the definition of \abs* and \norm*, so that \abs
+%% and \norm resizes the size of the brackets, and the 
+%% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+
+\setlength{\droptitle}{-5em}   %% This is your set screw
+%% Begin body of paper here
+
+\title{ECS 170: Learning to Play Pong}
+\author{Ethan He}
+\date{\vspace{-1cm}}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem Representation}
+
+
+
+\section{Making a Q-Learner Learn}
+
+
+\section{Extend the Deep Q-Learner}
+
+
+
+\section{Learning to Play Pong}
+
+
+
+\section{Bonus}
+
+
+\end{document}
