@@ -96,8 +96,6 @@
 \newcommand{\reftb}[1]{Table~\ref{#1}}
 
 \newcommand\round[1]{\left[#1\right]}
-\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
-\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 %% mathbb and mathcal often used letters
 \newcommand{\Z}{\mathbb{Z}}
@@ -157,6 +155,26 @@
 \maketitle
 
 \section{Problem Representation}
+
+\begin{enumerate}
+    \item I think it is better to use the hardware ram as array.
+        It might be easier for the agent to learn since the neural network
+        uses array as input and gives array as output.
+        Also image is also stored as matrix of pixels in ram,
+        so eventually the data will be in array form.
+
+    \item The purpose of the neural network in Q-Learning is to replace the lookuo table.
+        In such way, we can train a network for each action,
+        where we use state as input to the netword and get $\widehat{Q}$ as output.
+
+    \item $\epsilon$ is the identifier for choosing an action.
+        We generate a random number,
+        if it is greater then $\epsilon$,
+        we do exploitation, so choose the best known action that the $Q$ learner tell us;
+        otherwise, we do exploration, then do random action.
+
+    \item See function \codeword{act} of \codeword{dpn.py}.
+\end{enumerate}
 
 
 
