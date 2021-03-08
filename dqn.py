@@ -73,6 +73,11 @@ def compute_td_loss(model, target_model, batch_size, gamma, replay_buffer):
     done = Variable(torch.FloatTensor(done))
     # implement the loss function here
 
+    q_val = torch.gather(model(state.squeeze(1)), 1, action.unsqueeze(1)).squeeze(1) # y_i
+    q_val_target = target_model(next_state.squeeze(1)).max(1)[0]
+    expectations = reward + gamma * q_val_target * (1 - done) # Q(s,a; \Theta_i)
+    loss = (q_val - Variable(expectations.data)).pow(2).mean()
+
     return loss
 
 

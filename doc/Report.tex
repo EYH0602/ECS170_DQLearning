@@ -180,9 +180,18 @@
 
 \section{Making a Q-Learner Learn}
 
+The loss function is the square error formula.
+In the function, we get the current environment,
+where \codeword{batch_size} controls the sample size we fetch from \codeword{replay_buffer} (tensor).
+And from the random samples, we find the source to calculate the square error.
+The parameter \codeword{gamma}$\gamma$ is to control the Q-learner's behavior:
+as $\gamma$ get closer to 1,
+future rewards are given greater emphasis relative to the immediate rewards.
+
 
 \section{Extend the Deep Q-Learner}
 
+\textbf{Plots}.
 
 
 \section{Learning to Play Pong}
