@@ -47,7 +47,7 @@
 
 %%Code listing style named "mystyle"
 \lstdefinestyle{mystyle}{
-%   backgroundcolor=\color{backcolour}, 
+  backgroundcolor=\color{backcolour}, 
   commentstyle=\color{codegreen},
   keywordstyle=\color{magenta},
   numberstyle=\tiny\color{codegray},
@@ -157,11 +157,30 @@
 \section{Problem Representation}
 
 \begin{enumerate}
-    \item I think it is better to use the hardware ram as array.
-        It might be easier for the agent to learn since the neural network
-        uses array as input and gives array as output.
-        Also image is also stored as matrix of pixels in ram,
-        so eventually the data will be in array form.
+    \item Since we are using a neural network to replace the Q-table,
+        it is easier to use image as state input.
+        As it did in the \codeword{QLeaner} class:
+        \begin{lstlisting}[language=Python]
+self.features = nn.Sequential(
+    nn.Conv2d(self.input_shape[0], 32, kernel_size=8, stride=4),
+    nn.ReLU(),
+    nn.Conv2d(32, 64, kernel_size=4, stride=2),
+    nn.ReLU(),
+    nn.Conv2d(64, 64, kernel_size=3, stride=1),
+    nn.ReLU()
+)
+
+self.fc = nn.Sequential(
+    nn.Linear(self.feature_size(), 512),
+    nn.ReLU(),
+    nn.Linear(512, self.num_actions)
+)
+        \end{lstlisting}
+        % I think it is better to use the hardware ram as array.
+        % It might be easier for the agent to learn since the neural network
+        % uses array as input and gives array as output.
+        % Also image is also stored as matrix of pixels in ram,
+        % so eventually the data will be in array form.
 
     \item The purpose of the neural network in Q-Learning is to replace the lookuo table.
         In such way, we can train a network for each action,
@@ -191,11 +210,17 @@ future rewards are given greater emphasis relative to the immediate rewards.
 
 \section{Extend the Deep Q-Learner}
 
-\textbf{Plots}.
+See program \codeword{dqn.py}.
 
 
 \section{Learning to Play Pong}
 
+\begin{enumerate}
+    \item See program \codeword{run_dqn_pong.py}.
+    \item See program \codeword{run_dqn_pong.py}.
+    \item See program \codeword{run_dqn_pong.py}.
+    \item Plots.
+\end{enumerate}
 
 
 \section{Bonus}

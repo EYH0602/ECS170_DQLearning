@@ -93,6 +93,10 @@ class ReplayBuffer(object):
 
     def sample(self, batch_size):
         # TODO: Randomly sampling data with specific batch size from the buffer
+        state, action, reward, next_state, done = zip(*random.sample(self.buffer, batch_size))
+
+        state = Variable(torch.FloatTensor(np.float32(state)))
+        next_state = Variable(torch.FloatTensor(np.float32(next_state)))
 
         return state, action, reward, next_state, done
 
