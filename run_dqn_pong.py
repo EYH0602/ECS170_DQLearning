@@ -85,17 +85,9 @@ for frame_idx in range(1, num_frames + 1):
     if frame_idx % 50000 == 0:
         target_model.copy_from(model)
 
-        print("Copy from model")
+        print("Copy from model, saving data")
         torch.save(model.state_dict(), model_file)
-        np.savetxt('rewards.csv', all_rewards, delimiter=",")
-        np.savetxt('losses.csv', losses, delimiter=",")
-
-        # try to save the modle
-        # reward_mean = np.mean(all_rewards[-10:], 0)[1]
-        # if (reward_mean > curr_max):
-        #     print("save model")
-        #     curr_max = reward_mean
-        #     np.savetxt('rewards.csv', all_rewards, delimiter=",")
-        #     np.savetxt('losses.csv', losses, delimiter=",")
+        np.savetxt("rewards.csv", all_rewards, delimiter=",")
+        np.savetxt("losses.csv", losses, delimiter=",")
 
 
